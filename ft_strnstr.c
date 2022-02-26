@@ -18,10 +18,10 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 
 	if (*needle == '\0')
 		return ((char *)haystack);
-	l = ft_strlen(needle);
+	l = ft_strlen((char *)needle);
 	while (*haystack && len-- >= l)
 	{
-		if (*haystack == *needle && ft_memcmp(haystack, needle, l) == 0)
+		if (*haystack == *needle && ft_memcmp((const void *)haystack, (const void *)needle, l) == 0)
 			return ((char *)haystack);
 		haystack++;
 	}

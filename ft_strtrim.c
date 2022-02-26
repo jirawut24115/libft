@@ -19,7 +19,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 
 	while (*s1 && ft_strchr(set, *s1) != 0)
 		s1++;
-	l = ft_strlen(s1);
+	l = ft_strlen((char *)s1);
 	while (l && s1[l - 1] && ft_strchr(set, s1[l - 1]) != 0)
 		l--;
 	result = (char *)malloc(sizeof(char) * (l + 1));

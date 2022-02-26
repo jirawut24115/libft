@@ -42,7 +42,7 @@ static char	**ft_free_arr(char **s, int i)
 {
 	while (s[i] != NULL && i >= 0)
 	{
-		freee(s[i]);
+		free(s[i]);
 		s[i] = NULL;
 		i--;
 	}
