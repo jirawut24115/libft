@@ -6,7 +6,7 @@
 /*   By: jchompoo <jchompoo@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 22:37:54 by jchompoo          #+#    #+#             */
-/*   Updated: 2022/02/24 22:37:54 by jchompoo         ###   ########.fr       */
+/*   Updated: 2022/02/26 17:05:13 by jchompoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,6 @@ char	**ft_split(char const *s, char c)
 			s += l;
 		}
 	}
-	result[count] = '\0';
+	result[count] = NULL;
 	return (result);
 }
