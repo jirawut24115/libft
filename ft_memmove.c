@@ -6,7 +6,7 @@
 /*   By: jchompoo <jchompoo@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 19:43:24 by jchompoo          #+#    #+#             */
-/*   Updated: 2022/02/16 19:43:24 by jchompoo         ###   ########.fr       */
+/*   Updated: 2022/02/28 22:08:40 by jchompoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,22 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t n)
 {
-	size_t	i;
-	size_t	j;
+	char		*s;
+	char		*d;
+	size_t		i;
 
-	if (dst == src || !n)
-		return (dst);
+	s = (char *)src;
+	d = (char *)dst;
 	i = 0;
-	j = n;
-	if (dst < src)
+	if (d > s)
+		while (n-- > 0)
+			d[n] = s[n];
+	else
 	{
 		while (i < n)
 		{
-			*((char *)dst + i) = *((char *)src + i);
+			d[i] = s[i];
 			i++;
-		}
-	}
-	else
-	{
-		while (j > 0)
-		{
-			*((char *)dst + j) = *((char *)src + j);
-			n--;
 		}
 	}
 	return (dst);
