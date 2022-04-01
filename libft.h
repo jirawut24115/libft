@@ -34,6 +34,7 @@ int		ft_isalpha(int c);
 int		ft_isascii(int c);
 int		ft_isdigit(int c);
 int		ft_isprint(int c);
+int		ft_atoi(const char *nptr);
 char	*ft_itoa(int n);
 void	ft_striteri(char *s, void (*f)(size_t, char *));
 void	ft_lstadd_back(t_list **lst, t_list *new);
