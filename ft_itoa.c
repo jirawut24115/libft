@@ -12,52 +12,45 @@
 
 #include "libft.h"
 
-static size_t	ft_count_digit(int n)
+static int	put_rec(long long nbr, char *str, int is_negative)
 {
-	size_t	i;
+	int	mod;
+	int	index;
 
-	i = 0;
-	while (n > 0)
+	if (nbr < 10)
 	{
-		n /= 10;
-		i++;
+		if (is_negative && nbr != 0)
+		{
+			str[0] = '-';
+			str[1] = nbr + '0';
+			return (2);
+		}
+		str[0] = nbr + '0';
+		return (1);
 	}
-	return (i);
-}
-
-static void	ft_recurv_store(char *dst, unsigned int n)
-{
-	if (n < 10)
-		*dst = n + '0';
-	else
-	{
-		*dst = n % 10 + '0';
-		ft_recurv_store(dst - 1, n / 10);
-	}
+	index = put_rec(nbr / 10, str, is_negative);
+	mod = nbr % 10;
+	str[index] = mod + '0';
+	return (index + 1);
 }
 
 char	*ft_itoa(int n)
 {
-	unsigned int	nbr;
-	char			*result;
-	size_t			l;
+	int			is_negative;
+	long long	nbr;
+	char		*s_nbr;
 
-	nbr = n;
-	if (n == 0)
-		return (ft_strdup("0"));
-	l = ft_count_digit(n);
-	if (n < 0)
-		l += 1;
-	result = (char *)malloc(sizeof(char) * l + 1);
-	if (!result)
+	nbr = (long long)n;
+	s_nbr = (char *)malloc(sizeof(char *) * 40);
+	if (s_nbr == NULL)
 		return (NULL);
 	if (n < 0)
 	{
-		ft_recurv_store((result + l - 1), -nbr);
-		*result = '-';
+		is_negative = 1;
+		nbr *= -1;
 	}
 	else
-		ft_recurv_store((result + l - 1), nbr);
-	result[l] = '\0';
-	return (result);
+		is_negative = 0;
+	s_nbr[put_rec(nbr, s_nbr, is_negative)] = '\0';
+	return (s_nbr);
 }
