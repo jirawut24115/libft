@@ -6,7 +6,7 @@
 /*   By: jchompoo <jchompoo@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 22:37:54 by jchompoo          #+#    #+#             */
-/*   Updated: 2022/04/01 08:43:00 by jchompoo         ###   ########.fr       */
+/*   Updated: 2022/04/01 09:26:19 by jchompoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static char	**store_sp_str(char **sp_strs, const char *str, char c, int len)
 		str++;
 	}
 	sp_strs[word_cnt] = NULL;
-	if ((ft_strlen(str) > 0) || len > 0)
+	if ((ft_strlen((char *)str) > 0) || len > 0)
 		sp_strs = last_word_split(sp_strs, str, word_cnt, len);
 	return (sp_strs);
 }
