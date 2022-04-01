@@ -12,73 +12,79 @@
 
 #include "libft.h"
 
-static size_t	ft_word_len(char const *s, int c)
+static void	free_all(char	**arr)
 {
 	size_t	i;
 
 	i = 0;
-	while (*(s + i) && *(s + i) != c)
+	while (arr[i] != NULL)
+	{
+		free(arr[i]);
 		i++;
-	return (i);
+	}
+	free(arr);
 }
 
-static size_t	ft_word_count(char const *str, int c)
+static char	**last_word_split(char **sp_strs, char const *str, int i, int len)
 {
-	size_t	count;
+	sp_strs[i] = ft_substr(str - len, 0, len);
+	if (sp_strs[i] == NULL)
+		free_all(sp_strs);
+	sp_strs[i + 1] = NULL;
+	return (sp_strs);
+}
 
-	count = 0;
-	while (*str != '\0')
+static char	**store_sp_str(char **sp_strs, const char *str, char c, int len)
+{
+	int	word_cnt;
+
+	word_cnt = 0;
+	while (*str)
 	{
 		if (*str == c)
-			str++;
-		else
 		{
-			count++;
-			while (*str != '\0' && *str != c)
-				str++;
+			if (len != 0)
+			{
+				sp_strs[word_cnt] = ft_substr(str - len, 0, len);
+				if (sp_strs[word_cnt++] == NULL)
+					free_all(sp_strs);
+			}
+			len = 0;
 		}
+		else
+			len++;
+		str++;
 	}
-	return (count);
+	sp_strs[word_cnt] = NULL;
+	if ((ft_strlen(str) > 0) || len > 0)
+		sp_strs = last_word_split(sp_strs, str, word_cnt, len);
+	return (sp_strs);
 }
 
-static char	**ft_free_arr(char **s, int i)
+char	**ft_split(const char *str, char c)
 {
-	while (s[i] != NULL && i >= 0)
-	{
-		free(s[i]);
-		s[i] = NULL;
-		i--;
-	}
-	free(s);
-	s = NULL;
-	return (NULL);
-}
+	char	**sp_strs;
+	int		word_cnt;
+	int		i;
+	int		len;
 
-char	**ft_split(char const *s, char c)
-{
-	char	**result;
-	size_t	count;
-	size_t	l;
-	size_t	i;
-
-	count = ft_word_count(s, c);
-	result = (char **)malloc(sizeof(char *) * (count + 1));
-	if (!result || !s)
-		return (NULL);
+	word_cnt = 0;
 	i = 0;
-	while (*s)
+	len = 0;
+	while (str[i])
 	{
-		if (*s == c)
-			s++;
-		else
+		if (str[i] == c)
 		{
-			l = ft_word_len(s, c);
-			result[i] = ft_substr(s, 0, l);
-			if (result[i] == NULL || i < count)
-				return (ft_free_arr(result, i));
-			s += l;
+			if (len != 0)
+				word_cnt++;
+			len = 0;
 		}
+		else
+			len++;
+		i++;
 	}
-	result[i] = NULL;
-	return (result);
+	sp_strs = malloc(sizeof(char *) * (word_cnt + 1 + (len > 0)));
+	if (sp_strs == NULL)
+		return (NULL);
+	return (store_sp_str(sp_strs, str, c, 0));
 }
