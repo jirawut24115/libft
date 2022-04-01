@@ -6,7 +6,7 @@
 /*   By: jchompoo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 20:58:58 by jchompoo          #+#    #+#             */
-/*   Updated: 2022/02/28 21:12:38 by jchompoo         ###   ########.fr       */
+/*   Updated: 2022/03/04 14:12:15 by jchompoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void			ft_putendl_fd(char *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
 char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char			*ft_strjoin(char const *s1, char const *s2);
-char			*ft_strnstr(const char *hay, const char *needle, size_t len);
+char			*ft_strnstr(const char *str, const char *find, size_t len);
 char			*ft_strtrim(char const *s1, char const *set);
 char			*ft_strchr(const char *str, int c);
 char			*ft_strrchr(const char *str, int c);

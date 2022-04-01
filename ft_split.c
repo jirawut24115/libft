@@ -6,7 +6,7 @@
 /*   By: jchompoo <jchompoo@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 22:37:54 by jchompoo          #+#    #+#             */
-/*   Updated: 2022/02/26 17:05:13 by jchompoo         ###   ########.fr       */
+/*   Updated: 2022/04/01 08:43:00 by jchompoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static size_t	ft_word_len(char const *s, int c)
 	size_t	i;
 
 	i = 0;
-	while (*s && *s++ != c)
+	while (*(s + i) && *(s + i) != c)
 		i++;
 	return (i);
 }
@@ -27,13 +27,16 @@ static size_t	ft_word_count(char const *str, int c)
 	size_t	count;
 
 	count = 0;
-	while (*str)
+	while (*str != '\0')
 	{
-		count++;
-		while (*str && *str != c)
+		if (*str == c)
 			str++;
-		while (*str && *str == c)
-			str++;
+		else
+		{
+			count++;
+			while (*str != '\0' && *str != c)
+				str++;
+		}
 	}
 	return (count);
 }
@@ -76,6 +79,6 @@ char	**ft_split(char const *s, char c)
 			s += l;
 		}
 	}
-	result[count] = NULL;
+	result[i] = NULL;
 	return (result);
 }
