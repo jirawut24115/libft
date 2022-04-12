@@ -6,7 +6,7 @@
 #    By: jchompoo <jchompoo@student.42bangkok.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/22 22:04:52 by jchompoo          #+#    #+#              #
-#    Updated: 2022/03/29 18:34:28 by jchompoo         ###   ########.fr        #
+#    Updated: 2022/04/12 22:31:04 by jchompoo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,10 +42,10 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -c $^
 
 clean:
-	rm -f $(OBJS) $(BONUS_OBJS)
+	@rm -f $(OBJS) $(BONUS_OBJS)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
 
