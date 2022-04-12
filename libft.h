@@ -36,7 +36,7 @@ int		ft_isdigit(int c);
 int		ft_isprint(int c);
 int		ft_atoi(const char *nptr);
 char	*ft_itoa(int n);
-void	ft_striteri(char *s, void (*f)(size_t, char *));
+void	ft_striteri(char *s, void (*f)(unsigned int, char *));
 void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 void	ft_lstclear(t_list **lst, void (*del)(void *));
